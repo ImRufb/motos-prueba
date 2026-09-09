@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motos Pruebas | Financia tu Moto Hoy</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0F172A',
+                            accent: '#F59E0B',
+                            hover: '#D97706',
+                            card: '#1E293B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-hero {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 60%, #334155 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        /* Style for smooth horizontal carousel */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+        }
+        .carousel-item {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        @media (min-width: 640px) {
+            .carousel-item {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+            }
+        }
+        .dot-indicator.active {
+            background-color: #F59E0B;
+            width: 1.75rem;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-amber-500 selection:text-white">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md text-white border-b border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                    <div class="bg-amber-500 text-slate-950 p-2.5 rounded-xl font-bold shadow-lg shadow-amber-500/20">
+                        <i class="fa-solid fa-motorcycle text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider text-white">MOTOS<span class="text-amber-500">PRUEBAS</span></span>
+                        <span class="block text-[10px] text-slate-400 font-medium tracking-widest uppercase -mt-1">Financiamiento Seguro</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden lg:flex items-center space-x-8 font-medium text-sm text-slate-300">
+                    <a href="#inicio" class="hover:text-amber-500 transition-colors">Inicio</a>
+                    <a href="#catalogo" class="hover:text-amber-500 transition-colors">Modelos</a>
+                    <a href="#calculadora" class="hover:text-amber-500 transition-colors">Calculadora</a>
+                    <a href="#como-funciona" class="hover:text-amber-500 transition-colors">¿Cómo Funciona?</a>
+                    <a href="#requisitos" class="hover:text-amber-500 transition-colors">Requisitos</a>
+                    <a href="#contacto" class="hover:text-amber-500 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Action Button Desktop -->
+                <div class="hidden lg:flex items-center space-x-4">
+                    <a href="https://wa.me/584120000000?text=Hola,%20deseo%20información%20sobre%20el%20financiamiento%20de%20motos" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-semibold flex items-center gap-2 shadow-lg shadow-emerald-600/20 transition-all hover:scale-105">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>+58 412-0000000</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block py-2 text-slate-300 hover:text-amber-500 font-medium">Inicio</a>
+            <a href="#catalogo" class="block py-2 text-slate-300 hover:text-amber-500 font-medium">Modelos</a>
+            <a href="#calculadora" class="block py-2 text-slate-300 hover:text-amber-500 font-medium">Calculadora</a>
+            <a href="#como-funciona" class="block py-2 text-slate-300 hover:text-amber-500 font-medium">¿Cómo Funciona?</a>
+            <a href="#requisitos" class="block py-2 text-slate-300 hover:text-amber-500 font-medium">Requisitos</a>
+            <a href="#contacto" class="block py-2 text-slate-300 hover:text-amber-500 font-medium">Contacto</a>
+            <a href="https://wa.me/584120000000" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 mt-4">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>Atención por WhatsApp</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="gradient-hero text-white relative overflow-hidden py-20 lg:py-28">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs sm:text-sm font-semibold">
+                        <i class="fa-solid fa-bolt"></i> Financiamiento Directo y Sin Complicaciones
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                        Estrena tu Moto Hoy con <span class="text-amber-500">Motos Pruebas</span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+                        Accede a las mejores marcas del mercado en Venezuela con planes de financiamiento flexibles, cuotas cómodas e iniciales accesibles. ¡Tu vehículo propio en tiempo récord!
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                        <a href="#catalogo" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-8 py-4 rounded-xl shadow-lg shadow-amber-500/25 transition-all hover:scale-105 flex items-center justify-center gap-2">
+                            <span>Ver Modelos Disponibles</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#calculadora" class="bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-white font-semibold px-8 py-4 rounded-xl backdrop-blur-sm transition-all hover:scale-105 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calculator text-amber-500"></i>
+                            <span>Calcular Financiamiento</span>
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-800 text-center lg:text-left">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-amber-500">+1,500</p>
+                            <p class="text-xs sm:text-sm text-slate-400">Motos Entregadas</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-amber-500">24h - 48h</p>
+                            <p class="text-xs sm:text-sm text-slate-400">Aprobación Rápida</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-black text-amber-500">Hasta 18</p>
+                            <p class="text-xs sm:text-sm text-slate-400">Meses de Plazo</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative flex justify-center">
+                    <div class="relative w-full max-w-md lg:max-w-none">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-amber-500 to-blue-600 rounded-3xl transform rotate-3 scale-95 opacity-20 blur-lg"></div>
+                        <div class="bg-slate-800/90 border border-slate-700/60 rounded-3xl p-6 shadow-2xl relative">
+                            <div class="relative overflow-hidden rounded-2xl bg-slate-950 mb-6 group">
+                                <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80" alt="Moto Destacada" class="w-full h-64 sm:h-80 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute top-3 right-3 bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    ¡Top Ventas!
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-white">Modelo Pruebas Panther 150cc</h3>
+                                        <p class="text-xs text-slate-400">Motor 4 Tiempos | Frenos de Disco | Digital</p>
+                                    </div>
+                                    <span class="text-lg font-black text-amber-400">$1,250 REF</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 pt-2">
+                                    <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700/50">
+                                        <p class="text-[11px] text-slate-400 uppercase font-semibold">Inicial desde</p>
+                                        <p class="text-base font-bold text-white">$375 REF</p>
+                                    </div>
+                                    <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-700/50">
+                                        <p class="text-[11px] text-slate-400 uppercase font-semibold">Cuota estimada</p>
+                                        <p class="text-base font-bold text-amber-400">$73 / mes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog Section with Horizontal Slider/Carousel -->
+    <section id="catalogo" class="py-20 bg-slate-100 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-xs sm:text-sm font-bold text-amber-600 uppercase tracking-widest mb-2">Catálogo de Financiamiento</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Elige Tu Próxima Motocicleta</h3>
+                <p class="text-slate-600 mt-3 text-base">Desliza para explorar nuestros modelos de alta durabilidad con repuestos garantizados.</p>
+                
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 mt-6">
+                    <button class="filter-btn active bg-slate-900 text-white px-5 py-2.5 rounded-xl text-sm font-medium transition-all shadow-md" data-filter="all">Todos los Modelos</button>
+                    <button class="filter-btn bg-white text-slate-700 hover:bg-slate-200 px-5 py-2.5 rounded-xl text-sm font-medium transition-all" data-filter="disponible">Disponibles</button>
+                    <button class="filter-btn bg-white text-slate-700 hover:bg-slate-200 px-5 py-2.5 rounded-xl text-sm font-medium transition-all" data-filter="trabajo">Trabajo / Paseo</button>
+                    <button class="filter-btn bg-white text-slate-700 hover:bg-slate-200 px-5 py-2.5 rounded-xl text-sm font-medium transition-all" data-filter="deportiva">Deportivas</button>
+                </div>
+            </div>
+
+            <!-- Carousel Component Wrapper -->
+            <div class="relative px-2 sm:px-6">
+                <!-- Navigation Arrows -->
+                <button id="carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-slate-900/80 hover:bg-amber-500 text-white hover:text-slate-950 w-12 h-12 rounded-full flex items-center justify-center shadow-xl backdrop-blur-sm transition-all duration-300 focus:outline-none -ml-2 sm:ml-0 hover:scale-110">
+                    <i class="fa-solid fa-chevron-left text-lg"></i>
+                </button>
+                <button id="carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-slate-900/80 hover:bg-amber-500 text-white hover:text-slate-950 w-12 h-12 rounded-full flex items-center justify-center shadow-xl backdrop-blur-sm transition-all duration-300 focus:outline-none -mr-2 sm:mr-0 hover:scale-110">
+                    <i class="fa-solid fa-chevron-right text-lg"></i>
+                </button>
+
+                <!-- Carousel Viewport -->
+                <div id="carousel-viewport" class="overflow-hidden rounded-3xl py-4 cursor-grab active:cursor-grabbing select-none">
+                    <div id="carousel-track" class="carousel-track">
+                        <!-- Javascript will inject slide cards here -->
+                    </div>
+                </div>
+
+                <!-- Carousel Dots / Pagination -->
+                <div id="carousel-dots" class="flex justify-center items-center gap-2 mt-6">
+                    <!-- Javascript will render dots here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Calculator Section -->
+    <section id="calculadora" class="py-20 bg-slate-900 text-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-semibold">
+                        <i class="fa-solid fa-sliders"></i> Personaliza tu Crédito
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-black leading-tight">Simula tu Plan de Pagos en Segundos</h2>
+                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                        Ajusta el precio estimado de la moto, la inicial que deseas aportar y las cuotas mensuales para conocer la cuota exacta antes de iniciar la solicitud.
+                    </p>
+                    
+                    <div class="bg-slate-800/50 p-4 rounded-2xl border border-slate-700/60 space-y-3">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+                            <span class="text-sm font-medium text-slate-300">Tasa fija garantizada en dólares (REF)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+                            <span class="text-sm font-medium text-slate-300">Sin penalización por abonos a capital</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+                            <span class="text-sm font-medium text-slate-300">Respuesta inmediata de tu consulta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-800/90 border border-slate-700/80 rounded-3xl p-6 sm:p-8 shadow-2xl">
+                    <div class="space-y-6">
+                        <!-- Step 1: Price Slider -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label class="text-sm font-medium text-slate-300">Monto Total de la Moto (REF):</label>
+                                <span id="calc-price-display" class="text-2xl font-black text-amber-400">$1,200</span>
+                            </div>
+                            <input type="range" id="calc-price" min="600" max="3000" step="50" value="1200" class="w-full h-2.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+                            <div class="flex justify-between text-xs text-slate-500 mt-1">
+                                <span>$600</span>
+                                <span>$1,800</span>
+                                <span>$3,000</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Down Payment Percentage -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Porcentaje de Inicial:</label>
+                            <div class="grid grid-cols-4 gap-2">
+                                <button type="button" class="pct-btn bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl border border-slate-600 transition-all" data-pct="20">20%</button>
+                                <button type="button" class="pct-btn active bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-all" data-pct="30">30%</button>
+                                <button type="button" class="pct-btn bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl border border-slate-600 transition-all" data-pct="40">40%</button>
+                                <button type="button" class="pct-btn bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl border border-slate-600 transition-all" data-pct="50">50%</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Months Term -->
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Plazo de Financiamiento:</label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <button type="button" class="term-btn bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl border border-slate-600 transition-all" data-months="6">6 Meses</button>
+                                <button type="button" class="term-btn active bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-all" data-months="12">12 Meses</button>
+                                <button type="button" class="term-btn bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl border border-slate-600 transition-all" data-months="18">18 Meses</button>
+                            </div>
+                        </div>
+
+                        <!-- Results Summary -->
+                        <div class="bg-slate-950/70 p-5 rounded-2xl border border-amber-500/30 space-y-4">
+                            <div class="grid grid-cols-2 gap-4 divide-x divide-slate-800">
+                                <div>
+                                    <p class="text-xs text-slate-400 font-medium uppercase">Monto Inicial a Pagar</p>
+                                    <p id="calc-downpayment-result" class="text-2xl font-black text-white mt-1">$360 REF</p>
+                                </div>
+                                <div class="pl-4">
+                                    <p class="text-xs text-slate-400 font-medium uppercase">Cuota Mensual Estimada</p>
+                                    <p id="calc-monthly-result" class="text-2xl font-black text-amber-400 mt-1">$80 REF</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="btn-apply-calculator" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                            <span>Solicitar Crédito con estos Cálculos</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="como-funciona" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs sm:text-sm font-bold text-amber-600 uppercase tracking-widest mb-2">Proceso Paso a Paso</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">¿Cómo Solicitar tu Financiación?</h3>
+                <p class="text-slate-600 mt-3 text-base">Obtén tu vehículo en 5 sencillos pasos transparentes.</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-6 text-center">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 relative flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-600 font-black rounded-xl flex items-center justify-center text-xl mb-4">1</div>
+                    <h4 class="font-bold text-slate-900 mb-2">Selecciona tu Moto</h4>
+                    <p class="text-xs text-slate-500">Explora nuestro catálogo rotativo y elige el modelo ideal.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 relative flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-600 font-black rounded-xl flex items-center justify-center text-xl mb-4">2</div>
+                    <h4 class="font-bold text-slate-900 mb-2">Envía Requisitos</h4>
+                    <p class="text-xs text-slate-500">Envía tus documentos escaneados o en foto legible por WhatsApp.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 relative flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-600 font-black rounded-xl flex items-center justify-center text-xl mb-4">3</div>
+                    <h4 class="font-bold text-slate-900 mb-2">Evaluación Crediticia</h4>
+                    <p class="text-xs text-slate-500">Evaluamos tu solicitud en un lapso de 24 a 72 horas hábiles.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 relative flex flex-col items-center">
+                    <div class="w-12 h-12 bg-amber-500/10 text-amber-600 font-black rounded-xl flex items-center justify-center text-xl mb-4">4</div>
+                    <h4 class="font-bold text-slate-900 mb-2">Pago de Inicial y Firma</h4>
+                    <p class="text-xs text-slate-500">Abonas el monto acordado de la inicial y firmas tu contrato.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 relative flex flex-col items-center">
+                    <div class="w-12 h-12 bg-emerald-500 text-white font-black rounded-xl flex items-center justify-center text-xl mb-4 shadow-md shadow-emerald-500/30"><i class="fa-solid fa-key"></i></div>
+                    <h4 class="font-bold text-slate-900 mb-2">¡Retira tu Moto!</h4>
+                    <p class="text-xs text-slate-500">Recibe tu motocicleta 0 Km lista para rodar con sus documentos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section (Tabs) -->
+    <section id="requisitos" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs sm:text-sm font-bold text-amber-600 uppercase tracking-widest mb-2">Documentación Requerida</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Requisitos para tu Crédito</h3>
+                <p class="text-slate-600 mt-2 text-base">Reúne los siguientes requisitos indispensables antes de tu postulación.</p>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-slate-100 p-1.5 rounded-2xl flex space-x-2 border border-slate-200">
+                    <button id="tab-natural" class="tab-btn active bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-sm transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Persona Natural</span>
+                    </button>
+                    <button id="tab-juridica" class="tab-btn bg-transparent text-slate-600 hover:text-slate-900 px-6 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-building"></i>
+                        <span>Persona Jurídica</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Content: Persona Natural -->
+            <div id="content-natural" class="tab-content bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Cédula de Identidad</h5>
+                            <p class="text-xs text-slate-500">Vigente y legible (Venezolano o Extranjero residente).</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">RIF Vigente</h5>
+                            <p class="text-xs text-slate-500">Con dirección domiciliaria actualizada.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Demostración de Ingresos</h5>
+                            <p class="text-xs text-slate-500">Constancia de trabajo o certificación de ingresos firmada.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Referencias Personales</h5>
+                            <p class="text-xs text-slate-500">2 referencias personales con teléfono de contacto.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Recibo de Servicio Público</h5>
+                            <p class="text-xs text-slate-500">Luz, agua o telefonía para validar residencia.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Fiador / Garante</h5>
+                            <p class="text-xs text-slate-500">Cédula y RIF del fiador responsable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Persona Jurídica -->
+            <div id="content-juridica" class="tab-content hidden bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Registro Mercantil</h5>
+                            <p class="text-xs text-slate-500">Copia del documento constitutivo y modificaciones.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">RIF Jurídico Vigente</h5>
+                            <p class="text-xs text-slate-500">Copia legible del RIF de la empresa.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Cédula y RIF del Representante Legal</h5>
+                            <p class="text-xs text-slate-500">Documentación del apoderado o presidente.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 p-3 bg-white rounded-xl border border-slate-100">
+                        <i class="fa-solid fa-circle-check text-amber-500 text-xl mt-0.5"></i>
+                        <div>
+                            <h5 class="font-bold text-slate-900 text-sm">Estados Bancarios</h5>
+                            <p class="text-xs text-slate-500">Últimos 3 meses de estados de cuenta de la empresa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Application Section -->
+    <section id="contacto" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold text-amber-500 uppercase tracking-widest">Atención Inmediata</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold">¿Tienes dudas o quieres postularte?</h2>
+                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+                        Completa el siguiente formulario y un asesor financiero se comunicará contigo para formalizar la evaluación de tu crédito.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-amber-500">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">Oficina Principal</p>
+                                <p class="text-sm font-semibold">Av. Principal de Pruebas, Torre Empresarial, Piso 4. Venezuela.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-amber-500">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">Teléfono Directo</p>
+                                <p class="text-sm font-semibold">+58 412-0000000 / +58 212-0000000</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-slate-800 rounded-xl flex items-center justify-center text-amber-500">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-400">Correo Electrónico</p>
+                                <p class="text-sm font-semibold">contacto@motospruebas.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Card -->
+                <div class="lg:col-span-7 bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-700 shadow-xl">
+                    <form id="contact-form" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Nombre Completo *</label>
+                                <input type="text" id="form-name" required placeholder="Ej: Juan Pérez" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Cédula / RIF *</label>
+                                <input type="text" id="form-doc" required placeholder="V-12345678" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 text-sm">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Teléfono WhatsApp *</label>
+                                <input type="tel" id="form-phone" required placeholder="0412-1234567" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Modelo de Interés</label>
+                                <select id="form-model" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 text-sm">
+                                    <option value="General / Consulta">Selecciona un modelo...</option>
+                                    <option value="Panther 150cc">Panther 150cc - $1,250 REF</option>
+                                    <option value="Titan Work 150cc">Titan Work 150cc - $1,050 REF</option>
+                                    <option value="Capuccino Scooter 150cc">Capuccino Scooter - $1,400 REF</option>
+                                    <option value="Enduro TRX 200cc">Enduro TRX 200cc - $1,850 REF</option>
+                                    <option value="Runner Executive 150cc">Runner Executive - $1,150 REF</option>
+                                    <option value="Sport R 250cc">Sport R 250cc - $2,400 REF</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Mensaje / Ciudad de Residencia</label>
+                            <textarea id="form-message" rows="3" placeholder="Escribe aquí tu ciudad y cualquier inquietud adicional..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 text-sm"></textarea>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <span>Enviar Solicitud por WhatsApp</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-amber-500 text-slate-950 p-2 rounded-lg font-bold">
+                            <i class="fa-solid fa-motorcycle"></i>
+                        </div>
+                        <span class="text-xl font-black text-white">MOTOS<span class="text-amber-500">PRUEBAS</span></span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Tu aliado seguro para adquirir motocicletas a crédito en Venezuela con cuotas accesibles.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase text-xs tracking-wider">Navegación</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#inicio" class="hover:text-amber-500 transition-colors">Inicio</a></li>
+                        <li><a href="#catalogo" class="hover:text-amber-500 transition-colors">Catálogo de Motos</a></li>
+                        <li><a href="#calculadora" class="hover:text-amber-500 transition-colors">Calculadora</a></li>
+                        <li><a href="#requisitos" class="hover:text-amber-500 transition-colors">Requisitos de Crédito</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase text-xs tracking-wider">Horarios de Atención</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li>Lunes a Viernes: 8:00 AM - 5:00 PM</li>
+                        <li>Sábados: 9:00 AM - 1:00 PM</li>
+                        <li>Domingos: Cerrado</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-3 uppercase text-xs tracking-wider">Redes Sociales</h5>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-9 h-9 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 rounded-xl flex items-center justify-center transition-all"><i class="fa-brands fa-instagram text-base"></i></a>
+                        <a href="#" class="w-9 h-9 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 rounded-xl flex items-center justify-center transition-all"><i class="fa-brands fa-tiktok text-base"></i></a>
+                        <a href="#" class="w-9 h-9 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 rounded-xl flex items-center justify-center transition-all"><i class="fa-brands fa-facebook-f text-base"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-900 text-center text-xs text-slate-500">
+                <p>&copy; 2026 Motos Pruebas C.A. Todos los derechos reservados. Sitio de prueba para demostración.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Solicitud de Moto -->
+    <div id="modal-solicitud" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-700 w-full max-w-lg rounded-3xl p-6 sm:p-8 text-white relative shadow-2xl">
+            <button id="modal-close" class="absolute top-4 right-4 text-slate-400 hover:text-white p-2 text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="mb-6">
+                <span class="text-xs font-bold text-amber-500 uppercase">Solicitud Directa</span>
+                <h3 id="modal-moto-title" class="text-2xl font-black text-white mt-1">Nombre de la Moto</h3>
+                <p id="modal-moto-price" class="text-amber-400 font-bold text-lg mt-0.5">$0 REF</p>
+            </div>
+
+            <form id="modal-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Nombre Completo *</label>
+                    <input type="text" id="modal-input-name" required placeholder="Ej: Maria López" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Cédula *</label>
+                    <input type="text" id="modal-input-doc" required placeholder="V-00000000" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Teléfono WhatsApp *</label>
+                    <input type="tel" id="modal-input-phone" required placeholder="0424-0000000" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-amber-500">
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Confirmar Solicitud por WhatsApp</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Database of bikes
+        const bikes = [
+            {
+                id: 'panther-150',
+                name: 'Panther 150cc',
+                category: 'trabajo',
+                price: 1250,
+                downpayment: 375,
+                monthly: 73,
+                months: 15,
+                available: true,
+                image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=600&q=80',
+                specs: 'Motor 150cc | Frenos Disco/Tambor | Súper Económica'
+            },
+            {
+                id: 'titan-work-150',
+                name: 'Titan Work 150cc',
+                category: 'trabajo',
+                price: 1050,
+                downpayment: 315,
+                monthly: 61,
+                months: 15,
+                available: true,
+                image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=600&q=80',
+                specs: 'Parrilla Reforzada | Posa pies anchos | Resistente'
+            },
+            {
+                id: 'capuccino-150',
+                name: 'Capuccino Scooter 150cc',
+                category: 'deportiva',
+                price: 1400,
+                downpayment: 420,
+                monthly: 82,
+                months: 15,
+                available: true,
+                image: 'https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&w=600&q=80',
+                specs: 'Transmisión Automática | Estilo Retro | Comodidad'
+            },
+            {
+                id: 'enduro-trx-200',
+                name: 'Enduro TRX 200cc',
+                category: 'deportiva',
+                price: 1850,
+                downpayment: 555,
+                monthly: 108,
+                months: 15,
+                available: true,
+                image: 'https://images.unsplash.com/photo-1547549662-7788040d963f?auto=format&fit=crop&w=600&q=80',
+                specs: 'Suspensión alta | Neumáticos Mixtos | Potencia Total'
+            },
+            {
+                id: 'runner-exec-150',
+                name: 'Runner Executive 150cc',
+                category: 'trabajo',
+                price: 1150,
+                downpayment: 345,
+                monthly: 67,
+                months: 15,
+                available: false,
+                image: 'https://images.unsplash.com/photo-1558980394-4c7c9299fe96?auto=format&fit=crop&w=600&q=80',
+                specs: 'Diseño Aerodinámico | Tablero Digital | Luces LED'
+            },
+            {
+                id: 'sport-r-250',
+                name: 'Sport R 250cc',
+                category: 'deportiva',
+                price: 2400,
+                downpayment: 720,
+                monthly: 140,
+                months: 15,
+                available: true,
+                image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=600&q=80',
+                specs: 'Enfriado por Líquido | Frenos ABS | Máxima Velocidad'
+            }
+        ];
+
+        // Carousel Slider State Variables
+        let currentSlideIndex = 0;
+        let filteredBikesList = [...bikes];
+        let visibleItemsCount = 1;
+
+        function getVisibleItemsCount() {
+            if (window.innerWidth >= 1024) return 3;
+            if (window.innerWidth >= 640) return 2;
+            return 1;
+        }
+
+        function renderBikesCarousel(filter = 'all') {
+            const track = document.getElementById('carousel-track');
+            track.innerHTML = '';
+
+            filteredBikesList = bikes.filter(bike => {
+                if (filter === 'all') return true;
+                if (filter === 'disponible') return bike.available;
+                return bike.category === filter;
+            });
+
+            if (filteredBikesList.length === 0) {
+                track.innerHTML = `
+                    <div class="w-full text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-motorcycle text-4xl mb-3 block"></i>
+                        <p class="font-semibold text-lg">No hay motocicletas disponibles bajo esta categoría.</p>
+                    </div>
+                `;
+                document.getElementById('carousel-dots').innerHTML = '';
+                return;
+            }
+
+            filteredBikesList.forEach(bike => {
+                const item = document.createElement('div');
+                item.className = 'carousel-item px-3';
+                
+                item.innerHTML = `
+                    <div class="bg-white rounded-3xl overflow-hidden card-shadow border border-slate-200 flex flex-col justify-between h-full transition-all hover:-translate-y-1.5 duration-300">
+                        <div>
+                            <div class="relative h-56 bg-slate-900 overflow-hidden">
+                                <img src="${bike.image}" alt="${bike.name}" class="w-full h-full object-cover pointer-events-none">
+                                <span class="absolute top-3 right-3 text-xs font-bold px-3 py-1 rounded-full ${bike.available ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white'}">
+                                    ${bike.available ? 'Disponible' : 'Agotado'}
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-extrabold text-slate-900">${bike.name}</h3>
+                                <p class="text-xs text-slate-500 mt-1">${bike.specs}</p>
+                                
+                                <div class="mt-4 pt-4 border-t border-slate-100 grid grid-cols-2 gap-3">
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                        <p class="text-[10px] text-slate-400 font-bold uppercase">Precio Contado</p>
+                                        <p class="text-lg font-black text-slate-900">$${bike.price} REF</p>
+                                    </div>
+                                    <div class="bg-amber-50 p-3 rounded-xl border border-amber-100">
+                                        <p class="text-[10px] text-amber-700 font-bold uppercase">Inicial (${Math.round((bike.downpayment/bike.price)*100)}%)</p>
+                                        <p class="text-lg font-black text-amber-600">$${bike.downpayment} REF</p>
+                                    </div>
+                                </div>
+
+                                <div class="mt-3 bg-slate-900 text-white p-3 rounded-xl flex justify-between items-center">
+                                    <span class="text-xs text-slate-300 font-medium">Cuota (${bike.months} meses):</span>
+                                    <span class="text-base font-extrabold text-amber-400">$${bike.monthly} REF / mes</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-0">
+                            <button onclick="openApplyModal('${bike.name}', ${bike.price})" class="w-full ${bike.available ? 'bg-slate-900 hover:bg-amber-500 hover:text-slate-950 text-white' : 'bg-slate-200 text-slate-400 cursor-not-allowed'} font-bold py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2" ${!bike.available ? 'disabled' : ''}>
+                                <i class="fa-solid fa-paper-plane text-sm"></i>
+                                <span>${bike.available ? 'Me Interesa / Solicitar' : 'No Disponible'}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                track.appendChild(item);
+            });
+
+            currentSlideIndex = 0;
+            updateCarouselPosition();
+            renderCarouselDots();
+        }
+
+        function getMaxSlideIndex() {
+            visibleItemsCount = getVisibleItemsCount();
+            return Math.max(0, filteredBikesList.length - visibleItemsCount);
+        }
+
+        function updateCarouselPosition() {
+            const track = document.getElementById('carousel-track');
+            const maxIndex = getMaxSlideIndex();
+            
+            if (currentSlideIndex > maxIndex) {
+                currentSlideIndex = maxIndex;
+            }
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = 0;
+            }
+
+            visibleItemsCount = getVisibleItemsCount();
+            const percentageStep = 100 / visibleItemsCount;
+            track.style.transform = `translateX(-${currentSlideIndex * percentageStep}%)`;
+
+            // Update dots
+            document.querySelectorAll('.dot-indicator').forEach((dot, idx) => {
+                if (idx === currentSlideIndex) {
+                    dot.classList.add('active', 'bg-amber-500', 'w-7');
+                    dot.classList.remove('bg-slate-300', 'w-2.5');
+                } else {
+                    dot.classList.remove('active', 'bg-amber-500', 'w-7');
+                    dot.classList.add('bg-slate-300', 'w-2.5');
+                }
+            });
+
+            // Update arrow button state
+            const prevBtn = document.getElementById('carousel-prev');
+            const nextBtn = document.getElementById('carousel-next');
+
+            if (currentSlideIndex === 0) {
+                prevBtn.classList.add('opacity-40', 'cursor-not-allowed');
+            } else {
+                prevBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+            }
+
+            if (currentSlideIndex >= maxIndex) {
+                nextBtn.classList.add('opacity-40', 'cursor-not-allowed');
+            } else {
+                nextBtn.classList.remove('opacity-40', 'cursor-not-allowed');
+            }
+        }
+
+        function renderCarouselDots() {
+            const dotsContainer = document.getElementById('carousel-dots');
+            dotsContainer.innerHTML = '';
+
+            const totalDots = getMaxSlideIndex() + 1;
+            if (totalDots <= 1) return;
+
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.className = `dot-indicator h-2.5 rounded-full transition-all duration-300 ${i === currentSlideIndex ? 'active bg-amber-500 w-7' : 'bg-slate-300 w-2.5'}`;
+                dot.setAttribute('aria-label', `Ir a diapositiva ${i + 1}`);
+                dot.addEventListener('click', () => {
+                    currentSlideIndex = i;
+                    updateCarouselPosition();
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Carousel Arrow Listeners
+        document.getElementById('carousel-prev').addEventListener('click', () => {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateCarouselPosition();
+            }
+        });
+
+        document.getElementById('carousel-next').addEventListener('click', () => {
+            if (currentSlideIndex < getMaxSlideIndex()) {
+                currentSlideIndex++;
+                updateCarouselPosition();
+            }
+        });
+
+        // Drag / Swipe Gestures support for Carousel
+        const viewport = document.getElementById('carousel-viewport');
+        let startX = 0;
+        let isDragging = false;
+
+        viewport.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX;
+        });
+
+        viewport.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+            isDragging = false;
+            const diffX = e.pageX - startX;
+            if (diffX < -40 && currentSlideIndex < getMaxSlideIndex()) {
+                currentSlideIndex++;
+                updateCarouselPosition();
+            } else if (diffX > 40 && currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateCarouselPosition();
+            }
+        });
+
+        viewport.addEventListener('mouseleave', () => {
+            isDragging = false;
+        });
+
+        // Touch events for mobile swipe
+        viewport.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+
+        viewport.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            const diffX = endX - startX;
+            if (diffX < -40 && currentSlideIndex < getMaxSlideIndex()) {
+                currentSlideIndex++;
+                updateCarouselPosition();
+            } else if (diffX > 40 && currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateCarouselPosition();
+            }
+        }, { passive: true });
+
+        // Resize handler for responsive carousel items adjustment
+        window.addEventListener('resize', () => {
+            updateCarouselPosition();
+            renderCarouselDots();
+        });
+
+        // Filter buttons handler
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-slate-900', 'text-white', 'active');
+                    b.classList.add('bg-white', 'text-slate-700');
+                });
+                e.target.classList.remove('bg-white', 'text-slate-700');
+                e.target.classList.add('bg-slate-900', 'text-white', 'active');
+                
+                renderBikesCarousel(e.target.dataset.filter);
+            });
+        });
+
+        // Interactive Calculator Logic
+        const calcPriceInput = document.getElementById('calc-price');
+        const calcPriceDisplay = document.getElementById('calc-price-display');
+        const calcDownResult = document.getElementById('calc-downpayment-result');
+        const calcMonthlyResult = document.getElementById('calc-monthly-result');
+
+        let selectedPct = 30;
+        let selectedMonths = 12;
+
+        function updateCalculator() {
+            const price = parseFloat(calcPriceInput.value);
+            calcPriceDisplay.textContent = `$${price.toLocaleString()}`;
+
+            const downPayment = Math.round(price * (selectedPct / 100));
+            const remaining = price - downPayment;
+            
+            const interestRate = 0.015;
+            const monthlyPayment = Math.round((remaining / selectedMonths) + (remaining * interestRate));
+
+            calcDownResult.textContent = `$${downPayment} REF`;
+            calcMonthlyResult.textContent = `$${monthlyPayment} REF`;
+        }
+
+        calcPriceInput.addEventListener('input', updateCalculator);
+
+        // Percentage Buttons
+        document.querySelectorAll('.pct-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.pct-btn').forEach(b => {
+                    b.className = 'pct-btn bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl border border-slate-600 transition-all';
+                });
+                e.target.className = 'pct-btn active bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-all';
+                selectedPct = parseInt(e.target.dataset.pct);
+                updateCalculator();
+            });
+        });
+
+        // Term Buttons
+        document.querySelectorAll('.term-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.term-btn').forEach(b => {
+                    b.className = 'term-btn bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2.5 rounded-xl border border-slate-600 transition-all';
+                });
+                e.target.className = 'term-btn active bg-amber-500 text-slate-950 font-bold py-2.5 rounded-xl transition-all';
+                selectedMonths = parseInt(e.target.dataset.months);
+                updateCalculator();
+            });
+        });
+
+        // Apply via calculator
+        document.getElementById('btn-apply-calculator').addEventListener('click', () => {
+            const price = calcPriceInput.value;
+            const down = calcDownResult.textContent;
+            const monthly = calcMonthlyResult.textContent;
+            
+            const msg = `Hola Motos Pruebas, realicé una simulación en la calculadora:%0A- *Monto Moto:* $${price} REF%0A- *Inicial (${selectedPct}%):* ${down}%0A- *Plazo:* ${selectedMonths} Meses (${monthly}/mes)%0A%0AQuiero continuar mi solicitud.`;
+            window.open(`https://wa.me/584120000000?text=${msg}`, '_blank');
+        });
+
+        // Tabs Logic (Natural / Juridica)
+        const tabNatural = document.getElementById('tab-natural');
+        const tabJuridica = document.getElementById('tab-juridica');
+        const contentNatural = document.getElementById('content-natural');
+        const contentJuridica = document.getElementById('content-juridica');
+
+        tabNatural.addEventListener('click', () => {
+            tabNatural.className = 'tab-btn active bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-sm transition-all flex items-center gap-2';
+            tabJuridica.className = 'tab-btn bg-transparent text-slate-600 hover:text-slate-900 px-6 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2';
+            contentNatural.classList.remove('hidden');
+            contentJuridica.classList.add('hidden');
+        });
+
+        tabJuridica.addEventListener('click', () => {
+            tabJuridica.className = 'tab-btn active bg-slate-900 text-white px-6 py-3 rounded-xl font-bold text-sm shadow-sm transition-all flex items-center gap-2';
+            tabNatural.className = 'tab-btn bg-transparent text-slate-600 hover:text-slate-900 px-6 py-3 rounded-xl font-bold text-sm transition-all flex items-center gap-2';
+            contentJuridica.classList.remove('hidden');
+            contentNatural.classList.add('hidden');
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('modal-solicitud');
+        const modalClose = document.getElementById('modal-close');
+        let currentModalBike = '';
+
+        function openApplyModal(bikeName, bikePrice) {
+            currentModalBike = bikeName;
+            document.getElementById('modal-moto-title').textContent = bikeName;
+            document.getElementById('modal-moto-price').textContent = `$${bikePrice} REF`;
+            modal.classList.remove('hidden');
+        }
+
+        modalClose.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.add('hidden');
+        });
+
+        document.getElementById('modal-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('modal-input-name').value;
+            const doc = document.getElementById('modal-input-doc').value;
+            const phone = document.getElementById('modal-input-phone').value;
+
+            const text = `Hola Motos Pruebas, solicito crédito para:%0A- *Modelo:* ${currentModalBike}%0A- *Nombre:* ${name}%0A- *Cédula:* ${doc}%0A- *Teléfono:* ${phone}`;
+            window.open(`https://wa.me/584120000000?text=${text}`, '_blank');
+            modal.classList.add('hidden');
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const doc = document.getElementById('form-doc').value;
+            const phone = document.getElementById('form-phone').value;
+            const model = document.getElementById('form-model').value;
+            const message = document.getElementById('form-message').value;
+
+            const text = `Hola Motos Pruebas, envío una solicitud de financiamiento:%0A- *Nombre:* ${name}%0A- *Cédula/RIF:* ${doc}%0A- *Teléfono:* ${phone}%0A- *Modelo de Interés:* ${model}%0A- *Mensaje/Ciudad:* ${message}`;
+            window.open(`https://wa.me/584120000000?text=${text}`, '_blank');
+        });
+
+        // Mobile Menu Drawer Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Initial setup on window load
+        window.onload = function() {
+            renderBikesCarousel();
+            updateCalculator();
+        };
+    </script>
+</body>
+</html>
